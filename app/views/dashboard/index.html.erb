@@ -1,0 +1,11 @@
+<div class="card">
+  <h1>Dashboard</h1>
+
+  <% if flash[:notice] %>
+    <p class="success"><%= flash[:notice] %></p>
+  <% end %>
+
+  <p>Logged in as <strong><%= session[:user_id] %></strong> (<%= session[:role] %>)</p>
+
+  <%= button_to "Logout", logout_path, method: :delete %>
+</div>

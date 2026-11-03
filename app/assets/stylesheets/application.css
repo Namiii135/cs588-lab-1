@@ -1,0 +1,153 @@
+/* ===== Color palette (change these to restyle everything) ===== */
+:root {
+  --bg-dark: #02040d;
+  --bg-mid: #0a1128;
+  --blue: #2f80ff;
+  --cyan: #00d4ff;
+  --text: #e6efff;
+  --muted: #8da2c9;
+}
+
+* { box-sizing: border-box; }
+
+/* ===== Page background ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(47, 128, 255, .35), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(0, 212, 255, .25), transparent 40%),
+    linear-gradient(160deg, var(--bg-dark), var(--bg-mid) 60%, var(--bg-dark));
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Floating glow orbs */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation: float 9s ease-in-out infinite;
+}
+body::before {
+  width: 320px; height: 320px;
+  background: rgba(47, 128, 255, .45);
+  top: -80px; left: -80px;
+}
+body::after {
+  width: 380px; height: 380px;
+  background: rgba(0, 212, 255, .30);
+  bottom: -120px; right: -100px;
+  animation-delay: -4s;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(30px) scale(1.1); }
+}
+
+/* ===== Glass card ===== */
+.card {
+  width: 360px;
+  max-width: 92vw;
+  padding: 40px 34px;
+  border-radius: 20px;
+  background: rgba(10, 17, 40, .65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 212, 255, .25);
+  box-shadow: 0 0 40px rgba(47, 128, 255, .25),
+              0 20px 60px rgba(0, 0, 0, .6);
+  animation: rise .7s ease-out;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Heading with gradient text ===== */
+h1 {
+  margin: 0 0 22px;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Form fields ===== */
+label {
+  display: block;
+  margin: 16px 0 6px;
+  font-size: .85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 14px;
+  color: var(--text);
+  background: rgba(2, 4, 13, .7);
+  border: 1px solid rgba(141, 162, 201, .3);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+}
+input[type=text]:focus, input[type=password]:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, .2),
+              0 0 18px rgba(0, 212, 255, .35);
+}
+
+/* ===== Buttons ===== */
+input[type=submit], button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 13px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(47, 128, 255, .45);
+  transition: transform .2s, box-shadow .2s;
+}
+input[type=submit]:hover, button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 212, 255, .55);
+}
+input[type=submit]:active, button:active { transform: translateY(0); }
+
+/* ===== Feedback messages ===== */
+.error, .success {
+  margin: 0 0 8px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: .9rem;
+}
+.error {
+  color: #ff8a9b;
+  background: rgba(255, 60, 90, .12);
+  border: 1px solid rgba(255, 60, 90, .4);
+}
+.success {
+  color: #6fffd0;
+  background: rgba(0, 255, 170, .10);
+  border: 1px solid rgba(0, 255, 170, .35);
+}
+
+/* ===== Dashboard text ===== */
+p { line-height: 1.6; }
+strong { color: var(--cyan); }
